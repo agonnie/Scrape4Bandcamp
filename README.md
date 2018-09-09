@@ -8,14 +8,10 @@ It all started with me trying to download <a href="https://chinesefootball.bandc
 
 Bandcamp is aware of this but believe that it is not detrimental to artists as it leads to more people listening to their music. (yes I know it's 128kbps)
 
-
-
-
 ---
-In the future I would like to implement:
-+ Make this an executable so that it is easier to use
+To use simply paste the links of the albums you would like to download into album_list.txt (one per line)
+run Scraper4Bandcamp.exe
 
 ---
 
-Beautiful Soup 4 required.
-pip install beautifulsoup4
+Please make sure to support the artists when you are able to do so!
