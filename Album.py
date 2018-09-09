@@ -7,10 +7,12 @@ class Album:
         self.publish_date = None
         self.tracks = []
         self.album_id = 0
+        self.path = ""
 
     def add_tracks(self, dictionary):
         for track in dictionary:
             track_object = Track(track)
+            track_object['total_tracks'] = len(dictionary)
             self.tracks.append(track_object)
 
     def populate(self, json_object):
@@ -27,3 +29,6 @@ class Track:
     def __init__(self, dictionary):
         for key in dictionary:
             setattr(self, key, dictionary[key])
+
+    def __setitem__(self, key, value):
+        setattr(self, key, value)

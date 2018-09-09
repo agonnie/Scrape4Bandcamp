@@ -8,11 +8,13 @@ from urllib.request import urlopen
 from urllib.request import urlretrieve
 import os
 import json
+from Tagger import *
 
 
 class Scraper:
     def __init__(self, path):
         self.path = path
+        self.tagger = Tagger()
 
     def download(self, album_link):
         album = Album()
@@ -28,9 +30,11 @@ class Scraper:
             print("Downloading:\nSaving in: " + save_folder)
             # Get album cover
             urlretrieve("https://f4.bcbits.com/img/a" + album.art_id + "_5.jpg", save_folder + "cover.jpg")
-            # Download tracks
+            # Download tracks & Tag them
             for track in album.tracks:
                 self.download_track(track, save_folder)
+            album.path = save_folder
+            self.tagger.tag(album)
             finished = True
 
     @staticmethod
@@ -45,8 +49,7 @@ class Scraper:
         json_text = json.loads(str(embedded_player.find_all('script')[4]).split('var playerdata =')[1].split(';')[0])
         return json_text
 
-    @staticmethod
-    def download_track(track, save_folder):
+    def download_track(self, track, save_folder):
         title = track.title + str(".mp3")
         if track.file is not None:
             url = track.file['mp3-128']
@@ -67,3 +70,4 @@ class Scraper:
                 kb += block_sz
                 if (kb // 1024) % 100 == 0:
                     print("\t" + str((kb // 1024) / 1024) + " MB Downloaded")
+            f.close()

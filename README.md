@@ -13,9 +13,6 @@ Bandcamp is aware of this but believe that it is not detrimental to artists as i
 
 ---
 In the future I would like to implement:
-+ Metadata editing
-+ Ensuring that it can deal with unicode
-+ Embeded album art
 + Make this an executable so that it is easier to use
 
 ---
