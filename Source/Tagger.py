@@ -1,6 +1,6 @@
 import eyed3
 import datetime
-
+import re
 
 class Tagger:
     @staticmethod
@@ -12,7 +12,7 @@ class Tagger:
         for track in album.tracks:
             if track.file is not None:
                 print("tagging " + track.title)
-                audio_file = eyed3.load(album.path + track.title + ".mp3")
+                audio_file = eyed3.load(album.path + re.sub("[/:\"*?<>|]+", "-", track.title) + ".mp3")
                 if audio_file:
                     audio_file.initTag()
                     audio_file.tag.artist = track.artist

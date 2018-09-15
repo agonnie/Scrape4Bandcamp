@@ -9,6 +9,7 @@ from urllib.request import urlretrieve
 import os
 import json
 from Source.Tagger import *
+import re
 
 
 class Scraper:
@@ -50,7 +51,7 @@ class Scraper:
         return json_text
 
     def download_track(self, track, save_folder):
-        title = track.title + str(".mp3")
+        title = re.sub("[/:\"*?<>|]+", "-", track.title) + str(".mp3")
         if track.file is not None:
             url = track.file['mp3-128']
         else:
