@@ -7,6 +7,7 @@ class Album:
         self.publish_date = None
         self.tracks = []
         self.album_id = 0
+        self.art_url = ""
         self.path = ""
 
     def add_tracks(self, dictionary):
@@ -19,6 +20,7 @@ class Album:
         self.title = json_object['album_title']
         self.artist = json_object['artist']
         self.art_id = str(json_object['album_art_id'])
+        self.art_url = str("https://f4.bcbits.com/img/a" + self.art_id + "_5.jpg")
         self.band_url = json_object['band_url']
         self.publish_date = json_object['publish_date']
         self.album_id = json_object['album_id']
